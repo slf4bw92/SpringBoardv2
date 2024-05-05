@@ -43,7 +43,8 @@
 		UPDATE 	board
 		SET		title = #{title},
 				content = #{content},
-				writer = #{writer}  	   
+				writer = #{writer},
+				updateDate = SYSDATE  	   
 		WHERE	id = #{id}
 	</update>
 	

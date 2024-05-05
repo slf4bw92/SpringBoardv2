@@ -32,7 +32,7 @@
                         <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${board.id }</strong></td>
                         <td onclick="location.href='/boards/${board.id}'"><c:out value="${board.title }"/></td>
                         <td><c:out value="${board.writer }"/> </td>
-                        <td><fmt:formatDate value="${board.regdate }" pattern="yyyy-MM-dd"/></td>
+                        <td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${board.updateDate }" pattern="yyyy-MM-dd"/></td>
                       </tr>
                      </c:forEach> 
@@ -69,19 +69,30 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
-			/* 게시글 등록 번호 */
+			/* 게시글 CUD 결과 변수 */
 			var result = '<c:out value="${result}"/>';
+			
 			checkModal(result);
 			
 			/**
-			* 게시글 등록 확인 함수
-			* 게시글 등록번호(result)에 값이 없으면 그냥 리턴
-			* 값이 0보다 크면 게시글 등록완료 모달창을 띄움
-			*/
+			 * 게시글 관리 함수
+			 * 게시글 동작 결과(result)에 값이 없으면 그냥 리턴(아무 행동도 안한 상태)
+			 * result 값 : 수정 성공(updateSuccess), 삭제 성공(deleteSuccess), 등록 성공(등록된 게시글 번호) 
+			 * 등록 성공 result의 경우 문자열 -> 정수로 형변환 필요
+			 *
+			 */
 			function checkModal(result) {
 				
 				if (result === '') {
 					return;
+				}
+				
+				if (result === 'updateSuccess') {
+					$(".modal-body").html("<c:out value="${id}"/>번 게시글이 수정 되었습니다.")
+				}
+				
+				if (result === 'deleteSuccess') {
+					$(".modal-body").html("<c:out value="${id}"/>번 게시글이 삭제 되었습니다.")
 				}
 				
 				if (parseInt(result) > 0) {

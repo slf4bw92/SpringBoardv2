@@ -15,7 +15,7 @@
                       <small class="text-muted float-end">Default label</small>
                     </div>
                     <div class="card-body">
-                      <form role="form" action="/boards/${id}/edit" method="post">
+                      <form role="form" action="/boards/<c:out value='${board.id }'/>/edit" method="post">
                       	<div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">#게시글 번호</label>
                           <input type="text"   class="form-control" id="basic-default-fullname" readonly="readonly" 
@@ -37,10 +37,24 @@
                           <textarea id="basic-default-message" class="form-control"  rows="5" 
                                     name="content"><c:out value='${board.content }'/></textarea>
                         </div>
-                        <!-- 사용자 커스텀 속성 추가 -->
-                       	  <button data-oper="modify" class="btn btn-primary">수정</button>
-                       	  <button data-oper="remove" class="btn btn-danger" >삭제</button>
-                       	  <button data-oper="list"   class="btn btn-secondary">취소</button>
+                        
+                        <div class="mb-3">
+<!--                           <label class="form-label" for="basic-default-company">Regdate</label> -->
+                          <input type="text"   class="form-control" id="basic-default-company" readonly="readonly" hidden="hidden" 
+                                 name="regDate" value='<fmt:formatDate pattern ="yyyy/MM/dd" value="${board.regDate }"/>'  />
+                        </div>
+                        
+                        <div class="mb-3">
+<!--                           <label class="form-label" for="basic-default-company">updateDate</label> -->
+                          <input type="text"   class="form-control" id="basic-default-company" readonly="readonly" hidden="hidden" 
+                                 name="updateDate" value='<fmt:formatDate pattern ="yyyy/MM/dd" value="${board.updateDate }"/>' />
+                        </div>
+
+                        
+                        <!-- 사용자 커스텀 속성(oper 속성) 추가 -->
+                       	  <button data-oper="edit"    type="submit" class="btn btn-primary">수정</button>
+                       	  <button data-oper="delete"  type="submit" class="btn btn-danger" >삭제</button>
+                       	  <button data-oper="list"    type="submit" class="btn btn-secondary">취소</button>
                       </form>
                     </div>
                   </div>
@@ -51,7 +65,39 @@
 	
 	<!-- JS 부분  -->
 	<script type="text/javascript">
-		$(document)	
+		$(document).ready(function() {
+			
+			var formObj = $("form");
+			
+			/**  
+			 * form 요소의 수정,삭제,취소 submit 한번에 처리하는 로직   	
+			 * 1. form 요소내 버튼 클릭시 생기는 기본 이벤트(submit)를 막는다.
+			 * 2. oper 속성 값에 따라 다른 방식으로 요청 한다
+			 *    1) delete : 게시글 삭제, FORM 요소의 action 변경 -> /boards/{id}/delete 
+			 *    2) list   : 목록 돌아가기, location.href 활용해 이동 -> /boards
+			 *    3) edit   : 게시글 수정, FORM 요소의 action 그대로 사용
+			 * 3. 직접 submit 이벤트 수행
+			 */
+			$('button').on("click", function(e){
+				
+				e.preventDefault();
+				
+				var operation = $(this).data("oper");
+				console.log(operation);
+				
+				if(operation === 'delete') {
+					formObj.attr("action", "/boards/<c:out value='${board.id }'/>/delete");
+				} else if (operation === 'list') {
+					location.href = "/boards";
+					return;
+				}			
+				formObj.submit();
+				
+			});
+			
+		});
+			
+		
 	
 	
 	

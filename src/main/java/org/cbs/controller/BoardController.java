@@ -1,6 +1,5 @@
 package org.cbs.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.List;
 
@@ -65,5 +64,27 @@ public class BoardController {
 		Board board = boardService.find(id);
 		model.addAttribute("board", board);
 		return "board/editForm";
+	}
+	
+	@PostMapping("/{id}/edit")
+	public String editBoard(@PathVariable Long id, Board board, RedirectAttributes redirectAttributes) {
+		 
+		if(boardService.edit(board)) {
+			redirectAttributes.addFlashAttribute("result", "updateSuccess");
+			redirectAttributes.addFlashAttribute("id", id);
+		}
+		
+		return "redirect:/boards";
+	}
+	
+	@PostMapping("/{id}/delete")
+	public String deleteBoard(@PathVariable Long id, Board board, RedirectAttributes redirectAttributes) {
+		 
+		if(boardService.remove(id)) {
+			redirectAttributes.addFlashAttribute("result", "deleteSuccess");
+			redirectAttributes.addFlashAttribute("id", id);
+		}
+		
+		return "redirect:/boards";
 	}
 }
