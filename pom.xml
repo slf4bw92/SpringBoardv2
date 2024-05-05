@@ -1,0 +1,179 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 
+  <!--POM 버전  -->		 
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cbs</groupId>
+  <artifactId>cbs</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <properties>
+  	<!-- 자바 버전 -->
+  	<java-version>11</java-version>
+  	
+  	<!-- 스프링 버전  -->
+  	<org.springframework-version>5.3.27</org.springframework-version>
+  	
+  	<!-- log4j 버전/ slf4j 바인딩 버전(slf4j 버전과는 다름) -->
+  	<org.apache.logging.log4j-version>2.22.1</org.apache.logging.log4j-version>
+  	
+  	<!-- junit5 버전 -->
+  	<org.junit.jupiter-version>5.9.2</org.junit.jupiter-version>
+  	
+  	<!-- 롬복 버전 -->
+  	
+  	<!-- 마이바티스 버전 -->
+  	
+  	<!-- 마이바티스-스프링 버전 -->
+	
+  </properties>
+  
+  <dependencies>
+  	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${org.springframework-version}</version>
+	</dependency>
+  	
+ 	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.30</version>
+	</dependency>	
+   	
+   	<dependency>
+   		<groupId>com.oracle.ojdbc</groupId>
+   		<artifactId>ojdbc8</artifactId>
+   		<version>19.3.0.0</version>
+   	</dependency>
+   	
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter-api</artifactId>
+	    <version>${org.junit.jupiter-version}</version>
+	    <scope>test</scope> <!-- test 걸면 test환경에서만 쓸 수잇음, src/main/java에서 못씀 -->
+	</dependency>
+	
+	<dependency> <!-- test 걸면 test환경에서만 쓸 수잇음, src/main/java에서 못씀 -->
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-slf4j2-impl</artifactId>
+	    <version>${org.apache.logging.log4j-version}</version>
+	</dependency>
+	
+	<!-- log4j-api : log4j 에 사용되는 인터페이스와 클래스 정의  -->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>${org.apache.logging.log4j-version}</version>
+	</dependency>
+	
+	<!-- log4j-core : log4j의 핵심 구현, core가 api의존하므로 core만써도 api도 자동추가되지만, 명시적으로 추가하는게 더 확실함 -->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>${org.apache.logging.log4j-version}</version>
+	</dependency>
+	
+	<!-- 커넥션풀 라이브러리, HikariCP 깃허브보면 JDK 11 -> 5.1.0 권장 -->
+	<dependency>
+	   <groupId>com.zaxxer</groupId>
+	   <artifactId>HikariCP</artifactId>
+	   <version>5.1.0</version>
+	</dependency>
+	
+	<!-- MyBatis 라이브러리 -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis</artifactId>
+	    <version>3.5.7</version>
+	</dependency>
+	
+	<!-- MyBatis-Spring 라이브러리 -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-spring</artifactId>
+	    <version>2.1.1</version>
+	</dependency>
+	
+	<!-- PreparedStatement 추적용 라이브러리, src/main/resouces에 log4jdbc.log4j2.properties 프로퍼티 파일 추가 -->
+	<dependency>
+	    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+	    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+	    <version>1.16</version>
+	</dependency>
+	
+	<!-- AssertJ 라이브러리 추가 (junit과 사용하기좋은 테스트 라이브러리)  -->
+	<dependency>
+		  <groupId>org.assertj</groupId>
+		  <artifactId>assertj-core</artifactId>
+		  <version>3.25.1</version>
+		  <scope>test</scope>
+	</dependency>
+	
+	<!-- JSTL 태그 관련 라이브러리(개발 환경) -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	
+	<!-- Runtime에서 JSP 컨테이너가 JSTL 해석할 수있게 해주는 라이브러리  -->
+	<dependency>
+	    <groupId>org.apache.taglibs</groupId>
+	    <artifactId>taglibs-standard-impl</artifactId>
+	    <version>1.2.5</version>
+	    <scope>runtime</scope>
+	</dependency>
+	
+	
+	
+  </dependencies>
+ 
+  <build>
+    <plugins>
+      <plugin>		<!-- MAVEN 컴파일 할때 어떤 자바버전을 사용해 컴파일 할것인가  -->
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>	<!--Maven의 3.8.1 버전 사용  -->
+        <configuration>
+          <release>${java-version}</release>	<!-- 자바의 컴파일러를 11버전으로 사용  -->
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

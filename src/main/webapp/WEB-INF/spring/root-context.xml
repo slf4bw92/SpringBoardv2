@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- 커넥션 풀 설정 부분 시작 -->
+    <bean name="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+ 			 <!-- log4jdbc.log4j2 사용시 드라이버랑 URL 변경해야함  -->
+<!--         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> -->
+<!--         <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/> 	-->
+		<!-- 변경된 드라이버(log4jdbc.log4j2 사용) -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<!-- 변경된 URL(log4jdbc.log4j2 사용) -->
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"/>
+        <property name="username" value="book_ex"/>
+        <property name="password" value="book_ex"/>
+    </bean>
+
+	<!-- HikariCP configuration -->
+    <bean name="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig"/>
+    </bean>
+    
+    <!-- 커넥션 풀 설정 부분 종료 -->
+	
+	<!-- 마이바티스 스프링 연동 세팅, 프로퍼티로 dataSource(커넥션 풀 필요) -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	  <property name="dataSource" ref="dataSource" />
+	  <!-- mybatis-config 추가(typeAlias 용) , configLocation(구성위치) , value : 실제 파일 위치 지정  -->
+	  <property name="configLocation" value="classpath:/mybatis-config.xml"/>
+	</bean>
+	
+	<!-- 해당 패키지 안의 모든 인터페이스들을 MyBatis 매퍼로 간주하고 Spring의 Bean으로 등록 -->
+	<mybatis-spring:scan base-package="org.cbs.mapper"/>
+	
+	
+	<context:component-scan base-package="org.cbs.service"/>
+</beans>

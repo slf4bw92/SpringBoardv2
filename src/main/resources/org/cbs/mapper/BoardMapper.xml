@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.cbs.mapper.BoardMapper">
+	
+	<select id="selectAll" resultType="Board">
+		<![CDATA[
+			SELECT * 
+			FROM board 
+			WHERE id > 0
+		]]>
+	</select>
+	
+	
+	<insert id="insert" parameterType="Board">
+		<!-- INSERT 할 때, 시퀀스로 자동으로 생성되는 게시글 번호를 조회하고 싶을 때 사용 -->
+		<!-- 시퀀스로 생성된 key값을 Board 객체의 id 프로퍼티에 주입한다 : board.getId()로 조회 가능 -->
+		<selectKey keyProperty="id" order="BEFORE" resultType="Long">
+			SELECT seq_board.nextval FROM dual
+		</selectKey>
+		
+		<!-- Board 객체에 id 주입됐으므로 #{id} 사용가능 -->
+		INSERT INTO board (id, title, content, writer)
+		VALUES (#{id}, #{title}, #{content}, #{writer})
+	</insert>
+	
+
+	<select id="select" resultType="Board">
+		SELECT *
+		FROM   board
+		WHERE  id = #{id}
+	</select>
+	
+	<delete id="delete">
+		DELETE  
+		FROM	board
+		WHERE	id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="Board">
+		UPDATE 	board
+		SET		title = #{title},
+				content = #{content},
+				writer = #{writer}  	   
+		WHERE	id = #{id}
+	</update>
+	
+</mapper>
