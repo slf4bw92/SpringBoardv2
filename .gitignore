@@ -1,4 +1,7 @@
 ### Java ###
+# .tern-proejct JS, jQuery AutoComple Libarary
+/.tern-project
+
 # logs 폴더, .settings 폴더, target 폴더, bin폴더
 logs/
 .settings/
