@@ -79,7 +79,7 @@ public class BoardController {
 	
 	@PostMapping("/{id}/delete")
 	public String deleteBoard(@PathVariable Long id, Board board, RedirectAttributes redirectAttributes) {
-		 
+		// 유림짱  
 		if(boardService.remove(id)) {
 			redirectAttributes.addFlashAttribute("result", "deleteSuccess");
 			redirectAttributes.addFlashAttribute("id", id);
