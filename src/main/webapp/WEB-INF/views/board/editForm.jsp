@@ -15,7 +15,10 @@
                       <small class="text-muted float-end">Default label</small>
                     </div>
                     <div class="card-body">
-                      <form role="form" action="/boards/<c:out value='${board.id }'/>/edit" method="post">
+                      <form role="form" action="/boards/${board.id }/edit" method="post">
+                      	<input type="hidden" name="pageNum" value='<c:out value="${criteria.pageNum }"/>'>
+                      	<input type="hidden" name="amount"  value='<c:out value="${criteria.amount }"/>'>	
+                      
                       	<div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">#게시글 번호</label>
                           <input type="text"   class="form-control" id="basic-default-fullname" readonly="readonly" 
@@ -39,18 +42,16 @@
                         </div>
                         
                         <div class="mb-3">
-<!--                           <label class="form-label" for="basic-default-company">Regdate</label> -->
-                          <input type="text"   class="form-control" id="basic-default-company" readonly="readonly" hidden="hidden" 
+                          <input type="hidden"   class="form-control" id="basic-default-company" readonly="readonly" 
                                  name="regDate" value='<fmt:formatDate pattern ="yyyy/MM/dd" value="${board.regDate }"/>'  />
                         </div>
                         
                         <div class="mb-3">
-<!--                           <label class="form-label" for="basic-default-company">updateDate</label> -->
-                          <input type="text"   class="form-control" id="basic-default-company" readonly="readonly" hidden="hidden" 
+                          <input type="hidden"   class="form-control" id="basic-default-company" readonly="readonly" 
                                  name="updateDate" value='<fmt:formatDate pattern ="yyyy/MM/dd" value="${board.updateDate }"/>' />
                         </div>
-
-                        
+						
+						
                         <!-- 사용자 커스텀 속성(oper 속성) 추가 -->
                        	  <button data-oper="edit"    type="submit" class="btn btn-primary">수정</button>
                        	  <button data-oper="delete"  type="submit" class="btn btn-danger" >삭제</button>
@@ -86,10 +87,24 @@
 				console.log(operation);
 				
 				if(operation === 'delete') {
-					formObj.attr("action", "/boards/<c:out value='${board.id }'/>/delete");
+					formObj.attr("action", "/boards/${board.id }/delete");
 				} else if (operation === 'list') {
-					location.href = "/boards";
-					return;
+					
+					/** 
+					 * 목록으로 돌아가는 로직
+					 * 목록 페이지에는 pageNum, amount외 파라미터 필요없으므로 전부 제거후 필요한 내용만 다시 추가
+					 * clone() : 선택 요소 복사 (true : 선택요소 + 하위요소 복사/ false(default) : 선택요소만 복사)
+					 * empty() : 하위 요소 모두 제거
+					 * append() : 선택 요소 마지막 요소에 새요소 추가
+					 */
+					formObj.attr("action", "/boards").attr("method", "get")
+					var pageNumTag = $("input[name='pageNum']").clone();
+					var amountTag  = $("input[name='amount']").clone();
+					
+					formObj.empty(); 
+					formObj.append(pageNumTag)
+					formObj.append(amountTag);
+					
 				}			
 				formObj.submit();
 				

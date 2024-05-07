@@ -30,7 +30,9 @@
                     <c:forEach var="board" items="${boards }" >
                       <tr>
                         <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>${board.id }</strong></td>
-                        <td onclick="location.href='/boards/${board.id}'"><c:out value="${board.title }"/></td>
+                        <td class="move" 
+                            onclick="location.href='/boards/${board.id}?pageNum=${pageMaker.criteria.pageNum }&amount=${pageMaker.criteria.amount }'">
+                            <c:out value="${board.title }"/> </td>                            
                         <td><c:out value="${board.writer }"/> </td>
                         <td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
                         <td><fmt:formatDate value="${board.updateDate }" pattern="yyyy-MM-dd"/></td>
@@ -39,9 +41,40 @@
                     </tbody>
                   </table>
                 </div>
+				  <nav class="m-3" aria-label="Page navigation">
+                    <ul class="pagination justify-content-end">
+                      <!-- 이전 페이지 버튼  -->
+                      <c:if test="${pageMaker.prev }">
+                        <li class="page-item prev">
+                          <a class="page-link" href="<c:out value='${pageMaker.startPage - 1 }'/>"><i class="tf-icon bx bx-chevrons-left"></i></a>
+                        </li>
+                      </c:if>
+                      
+                      <!-- 페이지 번호  -->
+                      <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">  
+                        <!-- 페이지번호랑 현재 페이지 번호와 같으면 active -->
+                        <li class="page-item ${pageMaker.criteria.pageNum == num ? 'active' : '' } ">
+                          <a class="page-link" 
+                             href="/boards?pageNum=${num }&amount=${pageMaker.criteria.amount}" >${num }</a>
+                        </li>
+                      </c:forEach>
+                      
+                      <!-- 다음 페이지 버튼  -->  
+                      <c:if test="${pageMaker.next }">
+                        <li class="page-item next"> 
+                          <a class="page-link" href="<c:out value='${pageMaker.endPage + 1 }'/>"><i class="tf-icon bx bx-chevrons-right"></i></a>
+                        </li>
+                      </c:if>
+                    </ul>
+                    <!-- 페이지 이동 용 <form> 태그 -->
+                    <form id="actionForm" action="/boards" method="get">
+                    	<input type="hidden" name="pageNum"  value="<c:out value='${pageMaker.criteria.pageNum }'/>" >
+                    	<input type="hidden" name="amount"   value="<c:out value='${pageMaker.criteria.amount}'/>" >
+                    </form>
+                  </nav>		
               </div>
               <!--/ Basic Bootstrap Table -->
-				
+
 
 
               <!-- Modal 추가 -->
@@ -102,6 +135,25 @@
 				$("#myModal").modal("show");
 			}
 			
+			/**
+			 * 이거 이제 사용 안하고 그냥 <a> 나 location.href 사용
+			 * 페이지 이동 함수 
+			 * 페이지 이동 관련 버튼(이전, 번호, 다음) 클릭시
+			 *   1) 기존 a 태그 이벤트 막음
+			 *   2) actionForm 요소내 페이지 번호(pageNum)를 클릭한 번호로 변경
+			 *   3) actionForm 제출
+			 */
+/* 			var actionForm = $("#actionForm");
+			
+			$(".page-item a").on("click", function(e){
+				
+				e.preventDefault();
+				
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			}); */
+			 
+			 
 		});
 	</script>
 	

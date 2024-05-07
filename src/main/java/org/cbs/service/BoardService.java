@@ -3,11 +3,18 @@ package org.cbs.service;
 import java.util.List;
 
 import org.cbs.domain.Board;
+import org.cbs.domain.Criteria;
 
 public interface BoardService {
 	
-	/* 게시글 목록 조회 */
+	/* 총 게시글 수 조회 */
+	public int getTotal(Criteria criteria);
+	
+	/* 게시글 목록 조회(페이징 X) */
 	public List<Board> findAll();
+	
+	/* 게시글 목록 조회(페이징 O) */
+	public List<Board> findAll(Criteria criteria);
 	
 	/* 게시글 등록 */
 	public int register(Board board);

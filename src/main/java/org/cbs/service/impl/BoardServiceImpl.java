@@ -3,12 +3,12 @@ package org.cbs.service.impl;
 import java.util.List;
 
 import org.cbs.domain.Board;
+import org.cbs.domain.Criteria;
 import org.cbs.mapper.BoardMapper;
 import org.cbs.service.BoardService;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
@@ -16,12 +16,25 @@ public class BoardServiceImpl implements BoardService {
 	
 	private final BoardMapper boardMapper;
 	
+
 	@Override
-	public List<Board> findAll() {
+	public int getTotal(Criteria criteria) {
+		
+		return boardMapper.selectTotal(criteria);
+	}
+	
+	@Override
+	public List<Board> findAll() { 
 		
 		return boardMapper.selectAll();
 	}
 
+	@Override
+	public List<Board> findAll(Criteria criteria) {
+
+		return boardMapper.selectAllWithPaging(criteria);
+	}
+	
 	@Override
 	public int register(Board board) {
 		
@@ -45,5 +58,6 @@ public class BoardServiceImpl implements BoardService {
 
 		return boardMapper.delete(id) == 1;
 	}
+
 	
 }

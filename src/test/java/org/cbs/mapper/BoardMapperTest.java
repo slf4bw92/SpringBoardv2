@@ -4,6 +4,7 @@ package org.cbs.mapper;
 import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import org.cbs.domain.Board;
+import org.cbs.domain.Criteria;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -104,5 +105,22 @@ public class BoardMapperTest {
 		assertThat(result).isEqualTo(1);
 
 	}
+	
+	@Test
+	@DisplayName("페이징 테스트")
+	void testPaging() {
+		//given
+		Criteria criteria = new Criteria();
+		
+		//when
+		List<Board> boardList = boardMapper.selectAllWithPaging(criteria);
+		
+		//then
+		// 가져온 게시글 목록이 10개가 맞는가 ?
+		assertThat(boardList.size()).isEqualTo(10);
+		// 페이징 된 게시글 조회
+		boardList.forEach(board -> log.info("board : {}", board));
+	}
+	
 	 
 }

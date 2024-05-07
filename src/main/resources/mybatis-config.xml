@@ -7,5 +7,6 @@
 	
 	<typeAliases>
 		<typeAlias type="org.cbs.domain.Board" alias="Board"/>
+		<typeAlias type="org.cbs.domain.Criteria" alias="Criteria"/>
 	</typeAliases>
 </configuration>

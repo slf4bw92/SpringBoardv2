@@ -36,14 +36,46 @@
                           <textarea id="basic-default-message" class="form-control"  rows="5" readonly="readonly"
                                     name="content"><c:out value='${board.content }'/></textarea>
                         </div>
-                        <!-- 사용자 커스텀 속성 추가 --> 
-                        <button data-oper="modify" class="btn btn-primary"   onclick="location.href='/boards/<c:out value="${board.id}"/>/edit'">수정</button>
-                        <button data-oper="list"   class="btn btn-secondary" onclick="location.href='/boards'">목록으로</button>
+                        <!-- data-* 사용자 커스텀 속성 추가 --> 
+                        <button data-oper="modify" class="btn btn-primary">수정</button>
+                        <button data-oper="list"   class="btn btn-secondary">목록으로</button>
+                        
+                        <!-- 수정, 목록으로 버튼 클릭시 form 통한 이동 -->
+                        <form id="operForm" action="/boards/${board.id }/edit" method="get">
+                        	<input type="hidden" name="pageNum" value="${criteria.pageNum }">
+                        	<input type="hidden" name="amount"  value="${criteria.amount }">
+                        </form>
                     </div>
                   </div>
                 </div>
               </div>
 			  <!-- /.row -->	
-
+	
+	
+	<!-- JS  -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var operForm = $("#operForm");
+			
+			$("button[data-oper='modify']").on("click", function(e){
+				
+				operForm.attr("action", "/boards/${board.id}/edit").submit();
+			});
+			
+			$("button[data-oper='list']").on("click", function(e){
+				
+				operForm.attr("action", "/boards").submit();
+			});
+		});
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- Footer -->
 	<%@ include file="/WEB-INF/views/includes/footer.jsp" %>

@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class DataSourceTest {
 	private SqlSessionFactory sqlSessionFactory;
 	
 	@Test
+	@DisplayName("MyBatis 연동 테스트")
 	public void testMyBatis() {
 		SqlSession session = sqlSessionFactory.openSession();
 		Connection conn = session.getConnection();
@@ -44,6 +46,7 @@ public class DataSourceTest {
 	
 	
 	@Test
+	@DisplayName("커넥션 풀 테스트")
 	public void testConnection() {
 		
 		try ( Connection conn = dataSource.getConnection()) {

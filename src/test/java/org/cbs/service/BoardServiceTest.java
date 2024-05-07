@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 
 import org.cbs.domain.Board;
+import org.cbs.domain.Criteria;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @DisplayName("게시판 Service 테스트")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -99,5 +101,19 @@ public class BoardServiceTest {
 		assertThat(result).isEqualTo(true);
 	}
 	
+	@Test
+	@DisplayName("게시글 목록 조회(페이징 O)")
+	void findAllWithPaging() {
+		// given
+		// 현재 2페이지에 페이지당 데이터 수 10개
+		Criteria criteria = new Criteria(2, 10);
+		
+		// when
+		List<Board> boardList = boardService.findAll(criteria);
+		
+		// then
+		assertThat(boardList.size()).isEqualTo(10);
+		boardList.forEach(board -> log.info("{}", board));
+	}
 	
 }
