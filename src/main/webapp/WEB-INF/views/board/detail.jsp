@@ -42,8 +42,13 @@
                         
                         <!-- 수정, 목록으로 버튼 클릭시 form 통한 이동 -->
                         <form id="operForm" action="/boards/${board.id }/edit" method="get">
+                        	<!-- 페이지 정보 보관용(현재 페이지, 페이지당 게시글 수) -->
                         	<input type="hidden" name="pageNum" value="${criteria.pageNum }">
                         	<input type="hidden" name="amount"  value="${criteria.amount }">
+                        	
+                        	<!-- 검색 정보 보관용(검색 타입, 검색 키워드) -->
+                        	<input type="hidden" name="type"    value="${criteria.type }">
+                        	<input type="hidden" name="keyword" value="${criteria.keyword }">
                         </form>
                     </div>
                   </div>
@@ -55,6 +60,13 @@
 	<!-- JS  -->
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			/**
+			 * Form 동작 함수(수정, 목록으로)
+			 * 버튼이 form 밖에 있으므로 함수로 연결
+			 * 1. 수정 버튼 누르면 form 의 action 속성 값을 수정 url 로 변경후 form 제출
+			 * 2. 삭제 버튼 클릭시 form 의 action 속성 값을 삭제 url 로 변경후 form 제출
+			 */
 			var operForm = $("#operForm");
 			
 			$("button[data-oper='modify']").on("click", function(e){

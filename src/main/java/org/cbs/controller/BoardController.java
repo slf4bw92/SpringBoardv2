@@ -53,7 +53,6 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-		
 	@GetMapping("/add")
 	public String addForm( Model model) {
 		
@@ -89,10 +88,7 @@ public class BoardController {
 			redirectAttributes.addFlashAttribute("id", id);
 		}
 		
-		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
-		redirectAttributes.addAttribute("amount",  criteria.getAmount());
-		
-		return "redirect:/boards";
+		return "redirect:/boards" + criteria.getQueryParam();
 	}
 	
 	@PostMapping("/{id}/delete")
@@ -106,9 +102,7 @@ public class BoardController {
 			redirectAttributes.addFlashAttribute("id", id);
 		}
 		
-		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
-		redirectAttributes.addAttribute("amount",  criteria.getAmount());
 		
-		return "redirect:/boards";
+		return "redirect:/boards" + criteria.getQueryParam();
 	}
 }

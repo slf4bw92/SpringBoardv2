@@ -122,5 +122,22 @@ public class BoardMapperTest {
 		boardList.forEach(board -> log.info("board : {}", board));
 	}
 	
+	@Test
+	@DisplayName("검색+페이징 테스트")
+	void testSearching() {
+		//given
+		//검색타입 X or 검색타입 T,W,C, TW, WC TWC 넣고 쿼리  다양하게 테스트 
+		Criteria criteria = new Criteria();
+		criteria.setKeyword("user70");
+		criteria.setType("W");
+		
+		//when
+		List<Board> boardList = boardMapper.selectAllWithPaging(criteria);
+		
+		//then
+		//검색 + 페이징 된 게시글 조회
+		boardList.forEach(board -> log.info("board : {}", board));
+	}
+	
 	 
 }

@@ -16,8 +16,14 @@
                     </div>
                     <div class="card-body">
                       <form role="form" action="/boards/${board.id }/edit" method="post">
+                      	
+                      	<!-- 페이지 정보 보관용(현재 페이지, 페이지당 게시글 수) -->
                       	<input type="hidden" name="pageNum" value='<c:out value="${criteria.pageNum }"/>'>
-                      	<input type="hidden" name="amount"  value='<c:out value="${criteria.amount }"/>'>	
+                      	<input type="hidden" name="amount"  value='<c:out value="${criteria.amount }"/>'>
+                      	
+                      	<!-- 검색 정보 보관용(검색 타입, 검색 키워드) -->
+                      	<input type="hidden" name="type"    value='<c:out value="${criteria.type }"/>'>
+                      	<input type="hidden" name="keyword" value='<c:out value="${criteria.keyword }"/>'>	
                       
                       	<div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">#게시글 번호</label>
@@ -100,10 +106,14 @@
 					formObj.attr("action", "/boards").attr("method", "get")
 					var pageNumTag = $("input[name='pageNum']").clone();
 					var amountTag  = $("input[name='amount']").clone();
+					var typeTag    = $("input[name='type']").clone();
+					var keywordTag = $("input[name='keyword']").clone();
 					
 					formObj.empty(); 
 					formObj.append(pageNumTag)
 					formObj.append(amountTag);
+					formObj.append(typeTag);
+					formObj.append(keywordTag);
 					
 				}			
 				formObj.submit();
