@@ -42,7 +42,6 @@ public class BoardServiceTest {
 		board.setContent("서비스 게시글 테스트 내용");
 		board.setWriter("작성자");
 		
-
 		//when
 		int result = boardService.register(board);
 		Board findBoard = boardService.find(board.getBoardId());
