@@ -15,7 +15,7 @@
                       <small class="text-muted float-end">Default label</small>
                     </div>
                     <div class="card-body">
-                      <form role="form" action="/boards/${board.id }/edit" method="post">
+                      <form role="form" action="/boards/${board.boardId }/edit" method="post">
                       	
                       	<!-- 페이지 정보 보관용(현재 페이지, 페이지당 게시글 수) -->
                       	<input type="hidden" name="pageNum" value='<c:out value="${criteria.pageNum }"/>'>
@@ -28,7 +28,7 @@
                       	<div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">#게시글 번호</label>
                           <input type="text"   class="form-control" id="basic-default-fullname" readonly="readonly" 
-                                 name="id"     value="<c:out value='${board.id }'/>"/>
+                                 name="boardId"     value="<c:out value='${board.boardId }'/>"/>
                         </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">제목</label>
@@ -80,7 +80,7 @@
 			 * form 요소의 수정,삭제,취소 submit 한번에 처리하는 로직   	
 			 * 1. form 요소내 버튼 클릭시 생기는 기본 이벤트(submit)를 막는다.
 			 * 2. oper 속성 값에 따라 다른 방식으로 요청 한다
-			 *    1) delete : 게시글 삭제, FORM 요소의 action 변경 -> /boards/{id}/delete 
+			 *    1) delete : 게시글 삭제, FORM 요소의 action 변경 -> /boards/{boardId}/delete 
 			 *    2) list   : 목록 돌아가기, location.href 활용해 이동 -> /boards
 			 *    3) edit   : 게시글 수정, FORM 요소의 action 그대로 사용
 			 * 3. 직접 submit 이벤트 수행
@@ -93,7 +93,7 @@
 				console.log(operation);
 				
 				if(operation === 'delete') {
-					formObj.attr("action", "/boards/${board.id }/delete");
+					formObj.attr("action", "/boards/${board.boardId }/delete");
 				} else if (operation === 'list') {
 					
 					/** 

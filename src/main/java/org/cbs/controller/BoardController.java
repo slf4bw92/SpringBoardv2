@@ -43,12 +43,12 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	@GetMapping("/{id}")
-	public String board( @PathVariable Long id, 
+	@GetMapping("/{boardId}")
+	public String board( @PathVariable Long boardId, 
 						 @ModelAttribute Criteria criteria, 
 						 Model model) {
 		
-		Board board = boardService.find(id);
+		Board board = boardService.find(boardId);
 		model.addAttribute("board", board);
 		return "board/detail";
 	}
@@ -63,43 +63,43 @@ public class BoardController {
 	public String addBoard(@ModelAttribute Board board, RedirectAttributes redirectAttributes) {
 		
 		boardService.register(board);
-		redirectAttributes.addFlashAttribute("result", board.getId());
+		redirectAttributes.addFlashAttribute("result", board.getBoardId());
 		return "redirect:/boards";
 	}
 	
-	@GetMapping("/{id}/edit")
-	public String editForm(	@PathVariable Long id, 
+	@GetMapping("/{boardId}/edit")
+	public String editForm(	@PathVariable Long boardId, 
 							@ModelAttribute Criteria criteria,
 							Model model) {
 		
-		Board board = boardService.find(id);
+		Board board = boardService.find(boardId);
 		model.addAttribute("board", board);
 		return "board/editForm";
 	}
 	
-	@PostMapping("/{id}/edit")
-	public String editBoard( @PathVariable Long id, 
+	@PostMapping("/{boardId}/edit")
+	public String editBoard( @PathVariable Long boardId, 
 							 @ModelAttribute Criteria criteria, 
 							 @ModelAttribute Board board, 
 							 RedirectAttributes redirectAttributes) {
 		 
 		if(boardService.edit(board)) {
 			redirectAttributes.addFlashAttribute("result", "updateSuccess");
-			redirectAttributes.addFlashAttribute("id", id);
+			redirectAttributes.addFlashAttribute("boardId", boardId);
 		}
 		
 		return "redirect:/boards" + criteria.getQueryParam();
 	}
 	
-	@PostMapping("/{id}/delete")
-	public String deleteBoard( @PathVariable Long id, 
+	@PostMapping("/{boardId}/delete")
+	public String deleteBoard( @PathVariable Long boardId, 
 							   @ModelAttribute Criteria criteria, 
 							   @ModelAttribute Board board, 
 							   RedirectAttributes redirectAttributes) {
 
-		if(boardService.remove(id)) {
+		if(boardService.remove(boardId)) {
 			redirectAttributes.addFlashAttribute("result", "deleteSuccess");
-			redirectAttributes.addFlashAttribute("id", id);
+			redirectAttributes.addFlashAttribute("boardId", boardId);
 		}
 		
 		

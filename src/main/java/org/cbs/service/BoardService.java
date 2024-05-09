@@ -20,11 +20,11 @@ public interface BoardService {
 	public int register(Board board);
 	
 	/* 게시글 조회 */
-	public Board find(Long id);
+	public Board find(Long boardId);
 	
 	/* 게시글 수정 */
 	public boolean edit(Board board);
 	
 	/* 게시글 삭제 */
-	public boolean remove(Long id);
+	public boolean remove(Long boardId);
 }

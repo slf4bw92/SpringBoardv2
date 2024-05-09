@@ -45,11 +45,11 @@ public class BoardServiceTest {
 
 		//when
 		int result = boardService.register(board);
-		Board findBoard = boardService.find(board.getId());
+		Board findBoard = boardService.find(board.getBoardId());
 		
 		//then
 		assertThat(result).isEqualTo(1);
-		assertThat(findBoard.getId()).isEqualTo(board.getId());
+		assertThat(findBoard.getBoardId()).isEqualTo(board.getBoardId());
 		assertThat(findBoard.getTitle()).isEqualTo(board.getTitle());
 		
 	}
@@ -72,14 +72,14 @@ public class BoardServiceTest {
 	void edit() {
 		//given
 		Board board = new Board();
-		board.setId(10L);
+		board.setBoardId(10L);
 		board.setTitle("수정된 제목");
 		board.setContent("수정된 내용");
 		board.setWriter("수정된 작성자");
 		
 		//when
 		boolean result = boardService.edit(board);
-		Board findBoard = boardService.find(board.getId());
+		Board findBoard = boardService.find(board.getBoardId());
 		
 		//then
 		assertThat(result).isEqualTo(true);
@@ -92,10 +92,10 @@ public class BoardServiceTest {
 	@DisplayName("게시글 삭제")
 	void remove() {
 		//given
-		Long id = 2L;
+		Long boardId = 2L;
 		
 		//when
-		boolean result = boardService.remove(id);
+		boolean result = boardService.remove(boardId);
 		
 		//then
 		assertThat(result).isEqualTo(true);

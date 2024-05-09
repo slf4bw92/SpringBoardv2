@@ -69,7 +69,7 @@ public class BoardMapperTest {
 		//given 
 		//업데이트용 Board 객체(= 요청 데이터)
 		Board board = new Board();
-		board.setId(6L);
+		board.setBoardId(6L);
 		board.setTitle("수정된 제목6");
 		board.setContent("수정된 내용6");
 		board.setWriter("수정된 작성자6");
@@ -95,10 +95,10 @@ public class BoardMapperTest {
 	@DisplayName("게시글 삭제") 
 	void delete() {
 		//given
-		Long id = 20L;
+		Long boardId = 20L;
 
 		//when
-		int result = boardMapper.delete(id);
+		int result = boardMapper.delete(boardId);
 		
 		//then
 		//삭제된 데이터가 1개인지 확인

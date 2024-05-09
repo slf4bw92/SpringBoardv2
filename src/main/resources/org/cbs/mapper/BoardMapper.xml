@@ -30,26 +30,26 @@
 		<![CDATA[
 			SELECT  COUNT(*)
 			FROM	board
-			WHERE	id > 0
+			WHERE	board_id > 0
 		]]>
 	</select>
 	
 	<select id="selectAll" resultType="Board">
 		<![CDATA[
 			SELECT * 
-			FROM board 
-			WHERE id > 0
+			FROM  board 
+			WHERE board_id > 0
 		]]>
 	</select>
 	
 	<select id="selectAllWithPaging" parameterType="Criteria" resultType="Board">
 		<![CDATA[
 			SELECT
-				id, title, content, writer, regdate, updatedate		
+				board_id, title, content, writer, regdate, updatedate		
 			FROM					
 				(
 					SELECT /*+ INDEX_DESC (board pk_board) */
-						ROWNUM rn, id, title, content, writer, regdate, updatedate 
+						ROWNUM rn, board_id, title, content, writer, regdate, updatedate 
 					FROM 
 						board
 					WHERE 
@@ -67,27 +67,27 @@
 	
 	<insert id="insert" parameterType="Board">
 		<!-- INSERT 할 때, 시퀀스로 자동으로 생성되는 게시글 번호를 조회하고 싶을 때 사용 -->
-		<!-- 시퀀스로 생성된 key값을 Board 객체의 id 프로퍼티에 주입한다 : board.getId()로 조회 가능 -->
-		<selectKey keyProperty="id" order="BEFORE" resultType="Long">
+		<!-- 시퀀스로 생성된 key값을 Board 객체의 id 프로퍼티에 주입한다 : board.getBoardId()로 조회 가능 -->
+		<selectKey keyProperty="boardId" order="BEFORE" resultType="Long">
 			SELECT seq_board.nextval FROM dual
 		</selectKey>
 		
 		<!-- Board 객체에 id 주입됐으므로 #{id} 사용가능 -->
-		INSERT INTO board (id, title, content, writer)
-		VALUES (#{id}, #{title}, #{content}, #{writer})
+		INSERT INTO board (board_id, title, content, writer)
+		VALUES (#{boardId}, #{title}, #{content}, #{writer})
 	</insert>
 	
 
 	<select id="select" parameterType="Long" resultType="Board">
 		SELECT *
 		FROM   board
-		WHERE  id = #{id}
+		WHERE  board_id = #{boardId}
 	</select>
 	
 	<delete id="delete" parameterType="Long">
 		DELETE  
 		FROM	board
-		WHERE	id = #{id}
+		WHERE	board_id = #{boardId}
 	</delete>
 	
 	<update id="update" parameterType="Board">
@@ -96,7 +96,7 @@
 				content = #{content},
 				writer = #{writer},
 				updateDate = SYSDATE  	   
-		WHERE	id = #{id}
+		WHERE	board_id = #{boardId}
 	</update>
 	
 </mapper>

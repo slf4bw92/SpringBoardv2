@@ -18,7 +18,7 @@
                       	<div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">#게시글 번호</label>
                           <input type="text"   class="form-control" id="basic-default-fullname" readonly="readonly" 
-                                 name="id"     value="<c:out value='${board.id }'/>"/>
+                                 name="boardId"     value="<c:out value='${board.boardId }'/>"/>
                         </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">제목</label>
@@ -41,7 +41,7 @@
                         <button data-oper="list"   class="btn btn-secondary">목록으로</button>
                         
                         <!-- 수정, 목록으로 버튼 클릭시 form 통한 이동 -->
-                        <form id="operForm" action="/boards/${board.id }/edit" method="get">
+                        <form id="operForm" action="/boards/${board.boardId }/edit" method="get">
                         	<!-- 페이지 정보 보관용(현재 페이지, 페이지당 게시글 수) -->
                         	<input type="hidden" name="pageNum" value="${criteria.pageNum }">
                         	<input type="hidden" name="amount"  value="${criteria.amount }">
@@ -71,7 +71,7 @@
 			
 			$("button[data-oper='modify']").on("click", function(e){
 				
-				operForm.attr("action", "/boards/${board.id}/edit").submit();
+				operForm.attr("action", "/boards/${board.boardId}/edit").submit();
 			});
 			
 			$("button[data-oper='list']").on("click", function(e){

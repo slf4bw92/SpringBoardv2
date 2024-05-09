@@ -24,10 +24,10 @@ public interface BoardMapper {
 	public int insert(Board board);
 
 	/* 게시글 조회 */
-	public Board select(Long id);
+	public Board select(Long boardId);
 	
 	/* 게시글 삭제 */
-	public int delete(Long id);
+	public int delete(Long boardId);
 	
 	/* 게시글 수정 */
 	public int update(Board board);

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="org.cbs.mapper.ReplyMapper">
+ 	
+ 	<insert id="insert" parameterType="Reply">
+ 		<selectKey keyProperty="replyId" order="BEFORE" resultType="Long">
+ 			SELECT seq_reply.nextval FROM dual
+ 		</selectKey>
+ 		
+ 		INSERT INTO reply (reply_id, board_id, reply_content, replyer)
+ 		VALUES (#{replyId}, #{boardId}, #{replyContent}, #{replyer})
+ 	</insert>
+ 	
+ 	<select id="select" parameterType="Long" resultType="Reply">
+ 		SELECT  reply_id, board_id, reply_content, replyer, regdate, updatedate
+		FROM    reply
+		WHERE   reply_id = #{replyId}
+ 	</select>
+ 	
+ 	<delete id="delete" parameterType="Long">
+ 		DELETE 
+ 		FROM    reply 
+ 		WHERE   reply_id = #{replyId}
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="Reply">
+ 		UPDATE  reply
+		SET     reply_content = #{replyContent},
+        		updatedate    = SYSDATE
+		WHERE   reply_id = #{replyId}
+ 	</update>
+ 	
+ 	<select id="selectAllWithPaging" resultType="Reply">
+		SELECT    reply_id, board_id, reply_content, replyer, regdate, updatedate
+		FROM      reply
+		WHERE     board_id = #{boardId}
+		ORDER BY  reply_id ASC
+ 	</select>
+ 	
+ </mapper>

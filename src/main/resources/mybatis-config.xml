@@ -4,9 +4,14 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<settings>
+		<!-- SQL 실행하고, 그 결과를 자바 객체에 매핑할 때 스네이크형식의 칼럼 이름을 자바의 카멜 형식으로 자동 매핑 --> 
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
 	
 	<typeAliases>
-		<typeAlias type="org.cbs.domain.Board" alias="Board"/>
+		<typeAlias type="org.cbs.domain.Board"    alias="Board"/>
 		<typeAlias type="org.cbs.domain.Criteria" alias="Criteria"/>
+		<typeAlias type="org.cbs.domain.Reply"    alias="Reply"/>
 	</typeAliases>
 </configuration>

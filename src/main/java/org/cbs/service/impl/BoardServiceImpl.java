@@ -42,9 +42,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board find(Long id) {
+	public Board find(Long boardId) {
 
-		return boardMapper.select(id);
+		return boardMapper.select(boardId);
 	}
 
 	@Override
@@ -54,9 +54,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean remove(Long id) {
+	public boolean remove(Long boardId) {
 
-		return boardMapper.delete(id) == 1;
+		return boardMapper.delete(boardId) == 1;
 	}
 
 	

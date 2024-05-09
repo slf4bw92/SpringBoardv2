@@ -29,9 +29,9 @@
                     <tbody class="table-border-bottom-0">
                     <c:forEach var="board" items="${boards }" >
                       <tr>
-                        <td id ="boardId"><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>${board.id }</strong></td>
+                        <td id ="boardId"><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>${board.boardId }</strong></td>
                         <td class="move"> 
-                        	<a href="/boards/${board.id}?pageNum=${pageMaker.criteria.pageNum }&amount=${pageMaker.criteria.amount }">
+                        	<a href="/boards/${board.boardId}?pageNum=${pageMaker.criteria.pageNum }&amount=${pageMaker.criteria.amount }">
                         		<c:out value="${board.title }"/>
 	                        </a></td>                            
                         <td><c:out value="${board.writer }"/> </td>
@@ -164,11 +164,11 @@
 				}
 				
 				if (result === 'updateSuccess') {
-					$(".modal-body").html("<c:out value="${id}"/>번 게시글이 수정 되었습니다.")
+					$(".modal-body").html("<c:out value="${boardId}"/>번 게시글이 수정 되었습니다.")
 				}
 				
 				if (result === 'deleteSuccess') {
-					$(".modal-body").html("<c:out value="${id}"/>번 게시글이 삭제 되었습니다.")
+					$(".modal-body").html("<c:out value="${boardId}"/>번 게시글이 삭제 되었습니다.")
 				}
 				
 				if (parseInt(result) > 0) {

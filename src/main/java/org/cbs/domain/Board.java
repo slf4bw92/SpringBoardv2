@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Board {
 	
-	private Long id;			// 게시판 번호(PK)
+	private Long boardId;		// 게시판 번호(PK)
 	private String title;		// 게시판 제목
 	private String content;		// 내용
 	private String writer;		// 글쓴이
