@@ -21,7 +21,8 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public List<Reply> findAll(Criteria criteria, Long boardId) {
 		
-		log.info("findAll criteria : {},\n boardId : {}", criteria, boardId);
+		log.info("findAll... criteria : {}", criteria);
+		log.info("findAll... boardId : {}", boardId);
 		
 		return replyMapper.selectAllWithPaging(criteria, boardId);
 	}
@@ -29,7 +30,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int register(Reply reply) {
 
-		log.info("register reply : {}", reply);
+		log.info("register... reply : {}", reply);
 		
 		return replyMapper.insert(reply);
 	}
@@ -37,7 +38,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public Reply find(Long replyId) {
 
-		log.info("find replyId : {}", replyId);
+		log.info("find... replyId : {}", replyId);
 		
 		return replyMapper.select(replyId);
 	}
@@ -45,7 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int edit(Reply reply) {
 
-		log.info("edit reply : {}", reply);
+		log.info("edit... reply : {}", reply);
 		
 		return replyMapper.update(reply);
 	}

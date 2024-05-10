@@ -183,15 +183,20 @@
 			 * 페이지 이동 관련 버튼(이전, 번호, 다음) 클릭시
 			 *   1) 기존 a 태그 이벤트 막음
 			 *   2) actionForm 요소내 페이지 번호(pageNum)를 클릭한 번호로 변경
-			 *   3) actionForm 제출
+			 *   3) actionFrom 요소내 action 의 값을 "/boards" (목록 페이지)로 변경    
+			 *      why? actionForm을 페이지 조회, 이동이 같이 사용하고있어서 조회 -> 뒤로가기 -> 페이지이동(번호 클릭)시
+			 *           조회페이지에 썼던 action 값(URL)을 그대로 쓰면 "/boards/ + boardId" 에 의해 조회 페이지로 이동해버림   
+			 *   4) actionForm 제출
 			 */
 			var actionForm = $("#actionForm");
 			
 			$(".page-item a").on("click", function(e){
-				
+
 				e.preventDefault();
 				
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				
+				actionForm.attr("action", "/boards");
 				actionForm.submit();
 			});
 			 
@@ -199,13 +204,13 @@
 			/**
 			 * 목록 -> 조회 페이지 이동 jQuery 함수
 			 * 게시글 제목 클릭시
-			 *    1) 기존 a 태그 막고
-			 *    2) 게시글 번호 가져온다.
-			 *    3) 게시글 번호 활용해 action 속성에 조회 페이지 요청 url 작성
-			 *    4) actionForm 제출
+			 *   1) 기존 a 태그 막고
+			 *   2) 게시글 번호 가져온다.
+			 *   3) 게시글 번호 활용해 action 속성에 조회 페이지 요청 url 작성
+			 *   4) actionForm 제출
 			 */
 			$(".move").on("click", function(e) {
-				
+
 				e.preventDefault();
 				
 				// 선택한 요소의 가장 가까운 부모 tr을 찾고, 그 하위요소중 boardId 이름을가진 요소의 내용을 가져온다.

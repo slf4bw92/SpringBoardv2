@@ -22,11 +22,16 @@
   	<org.junit.jupiter-version>5.9.2</org.junit.jupiter-version>
   	
   	<!-- 롬복 버전 -->
+  	<lombok-verison>1.18.30</lombok-verison>
   	
   	<!-- 마이바티스 버전 -->
+  	<mybatis-version>3.5.7</mybatis-version>
   	
   	<!-- 마이바티스-스프링 버전 -->
-	
+  	<mybatis-spring-version>2.1.1</mybatis-spring-version>
+  	
+  	<!-- Jackson 라이브러리 버전 -->
+  	<jackson-databind-version>2.15.2</jackson-databind-version>
   </properties>
   
   <dependencies>
@@ -70,7 +75,7 @@
  	<dependency>
 		<groupId>org.projectlombok</groupId>
 		<artifactId>lombok</artifactId>
-		<version>1.18.30</version>
+		<version>${lombok-verison}</version>
 	</dependency>	
    	
    	<dependency>
@@ -117,14 +122,14 @@
 	<dependency>
 	    <groupId>org.mybatis</groupId>
 	    <artifactId>mybatis</artifactId>
-	    <version>3.5.7</version>
+	    <version>${mybatis-version}</version>
 	</dependency>
 	
 	<!-- MyBatis-Spring 라이브러리 -->
 	<dependency>
 	    <groupId>org.mybatis</groupId>
 	    <artifactId>mybatis-spring</artifactId>
-	    <version>2.1.1</version>
+	    <version>${mybatis-spring-version}</version>
 	</dependency>
 	
 	<!-- PreparedStatement 추적용 라이브러리, src/main/resouces에 log4jdbc.log4j2.properties 프로퍼티 파일 추가 -->
@@ -155,6 +160,13 @@
 	    <artifactId>taglibs-standard-impl</artifactId>
 	    <version>1.2.5</version>
 	    <scope>runtime</scope>
+	</dependency>
+	
+	<!-- Jackon 라이브러리 : java 객체 <-> JSON 형식 변환 -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>${jackson-databind-version}</version>
 	</dependency>
 	
 	
