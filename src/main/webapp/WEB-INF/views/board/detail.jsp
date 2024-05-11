@@ -81,11 +81,19 @@
 		});
 	</script>
 	
+	<!-- reply module : ajax 통신 + reply 관련 비즈니스로직 제공 -->
+	<script type="text/javascript" src="/resources/js/reply.js"></script>
 	
+	<!-- reply module Test 로직, 완료 후 주석처리 -->
+	<script type="text/javascript" src="/resources/js/replyServiceTest.js"></script>
 	
+	<!-- reply 이벤트 처리 --> 
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+		});
 	
-	
-	
+	</script>	
 	
 	
 	

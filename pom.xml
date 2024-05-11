@@ -169,6 +169,13 @@
 	    <version>${jackson-databind-version}</version>
 	</dependency>
 	
+	<!-- Jackson 라이브러리 확장모듈 : java 객체 <-> XML 변환 -->
+	<!-- produces, comsumes에 MediaType.APPLICATION_XML_VALUE 쓸 때 사용 -->
+	<dependency>
+	    <groupId>com.fasterxml.jackson.dataformat</groupId>
+	    <artifactId>jackson-dataformat-xml</artifactId>
+	    <version>2.15.2</version>
+	</dependency>
 	
 	
   </dependencies>
