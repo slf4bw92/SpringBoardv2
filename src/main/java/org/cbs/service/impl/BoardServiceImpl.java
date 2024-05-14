@@ -5,8 +5,10 @@ import java.util.List;
 import org.cbs.domain.Board;
 import org.cbs.domain.Criteria;
 import org.cbs.mapper.BoardMapper;
+import org.cbs.mapper.ReplyMapper;
 import org.cbs.service.BoardService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 	
 	private final BoardMapper boardMapper;
+	
 	
 
 	@Override
@@ -38,6 +41,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int register(Board board) {
 		
+		
 		return boardMapper.insert(board);
 	}
 
@@ -46,18 +50,24 @@ public class BoardServiceImpl implements BoardService {
 
 		return boardMapper.select(boardId);
 	}
-
+	
+	
 	@Override
 	public boolean edit(Board board) {
+		
 		
 		return boardMapper.update(board) == 1;
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long boardId) {
-
+		
+	
 		return boardMapper.delete(boardId) == 1;
 	}
+
+
 
 	
 }

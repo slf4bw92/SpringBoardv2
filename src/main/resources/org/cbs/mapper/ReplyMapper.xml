@@ -22,7 +22,7 @@
  	
  	<delete id="delete" parameterType="Long">
  		DELETE 
- 		FROM    reply 
+ 		FROM    reply
  		WHERE   reply_id = #{replyId}
  	</delete>
  	
@@ -34,10 +34,25 @@
  	</update>
  	
  	<select id="selectAllWithPaging" resultType="Reply">
-		SELECT    reply_id, board_id, reply_content, replyer, regdate, updatedate
-		FROM      reply
-		WHERE     board_id = #{boardId}
-		ORDER BY  reply_id ASC
+ 		<![CDATA[
+			SELECT reply_id, board_id, reply_content, replyer, regdate, updatedate
+			FROM (
+			        SELECT /*+ INDEX (reply idx_reply) */ 
+			            ROWNUM rn, reply_id, board_id, reply_content, replyer, regdate, updatedate
+			        FROM 
+			            reply
+			        WHERE board_id = #{boardId} 
+			        AND reply_id > 0
+			        AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
+			     )
+			WHERE rn > (#{criteria.pageNum} -1) * #{criteria.amount}
+		]]>     
+ 	</select>
+ 	
+ 	<select id="selectTotalByBoardId" parameterType="Long" resultType="int">
+		SELECT COUNT(reply_id)
+		FROM   reply
+		WHERE  board_id = #{boardId}
  	</select>
  	
  </mapper>

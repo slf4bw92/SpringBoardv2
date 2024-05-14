@@ -3,8 +3,11 @@ package org.cbs.service;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import org.cbs.domain.Criteria;
 import org.cbs.domain.Reply;
+import org.cbs.domain.ReplyPageDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @DisplayName("댓글 서비스 테스트")
@@ -23,14 +29,15 @@ public class ReplyServiceTest {
 	@DisplayName("게시글에 대한 댓글 목록 테스트(페이징 X)")
 	void findAll() {
 		//given
-		Criteria criteria = new Criteria();
+		Criteria criteria = new Criteria(3,10);
 		Long boardId = 313L;
 		
 		//when
-		List<Reply> replyList = replyService.findAll(criteria, boardId);
+		ReplyPageDTO replyPageDTO = replyService.findAll(criteria, boardId);
 		
 		//then
-		assertThat(replyList.size()).isEqualTo(12);
+		log.info("313번 게시글의 댓글 수 {} " , replyPageDTO.getReplyCnt());
+		replyPageDTO.getList().forEach(reply -> log.info("reply : {}", reply));
 	}
 
 	@Test

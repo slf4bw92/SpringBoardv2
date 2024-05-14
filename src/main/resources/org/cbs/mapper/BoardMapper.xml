@@ -6,6 +6,7 @@
 <mapper namespace="org.cbs.mapper.BoardMapper">
 
 	<!-- 검색 관련 쿼리 -->
+	<!-- prefixOverrides가 먼저 수행되고 그 다음 prefix 가 수행 (제거후 추가)-->
 	<sql id="criteria">
 		<trim prefixOverrides="OR" prefix="(" suffix=") AND" >
 			<foreach item='type' collection="typeArr">
@@ -30,8 +31,12 @@
 		<![CDATA[
 			SELECT  COUNT(*)
 			FROM	board
-			WHERE	board_id > 0
+			WHERE	
 		]]>
+		
+		<include refid="criteria"/> 
+					
+					board_id > 0
 	</select>
 	
 	<select id="selectAll" resultType="Board">
@@ -45,11 +50,11 @@
 	<select id="selectAllWithPaging" parameterType="Criteria" resultType="Board">
 		<![CDATA[
 			SELECT
-				board_id, title, content, writer, regdate, updatedate		
+				board_id, title, content, writer, regdate, updatedate, replycnt		
 			FROM					
 				(
 					SELECT /*+ INDEX_DESC (board pk_board) */
-						ROWNUM rn, board_id, title, content, writer, regdate, updatedate 
+						ROWNUM rn, board_id, title, content, writer, regdate, updatedate, replycnt 
 					FROM 
 						board
 					WHERE 
@@ -99,4 +104,9 @@
 		WHERE	board_id = #{boardId}
 	</update>
 	
+	<update id="updateReplyCnt">
+		UPDATE board
+		SET    replycnt = replycnt + #{amount}
+		WHERE  board_id = #{boardId}
+	</update>
 </mapper>

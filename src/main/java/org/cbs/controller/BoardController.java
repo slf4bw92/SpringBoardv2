@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	
 	private final BoardService boardService;
-	
+
 	@GetMapping
 	public String boards( @ModelAttribute Criteria criteria, Model model) {
 		

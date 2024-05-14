@@ -36,13 +36,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/resources/assets/img/favicon/favicon.ico" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts (CDN) Noto Sans KR -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="/resources/assets/vendor/fonts/boxicons.css" />
@@ -58,6 +55,15 @@
     <link rel="stylesheet" href="/resources/assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
+	<style type="text/css">
+		body {
+			font-family: "Noto Sans KR", sans-serif;
+	  		font-optical-sizing: auto;
+	  		font-weight: 500;
+	  		font-style: normal;
+		}
+	</style>
+	
 
     <!-- Helpers -->
     <script src="/resources/assets/vendor/js/helpers.js"></script>
@@ -67,6 +73,9 @@
     <script src="/resources/assets/js/config.js"></script>
     <!-- jQuery CDN 방식  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <!-- 부트스트랩 아이콘 폰트 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
 
   <body>

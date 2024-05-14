@@ -14,4 +14,6 @@ public class Board {
 	private Date regDate;		// 게시글 등록일
 	private Date updateDate;	// 게시글 수정일
 	
+	private int replyCnt;		// 전체 댓글 수 (트랜잭션 처리용 추가)
+	
 }

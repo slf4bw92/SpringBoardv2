@@ -1,15 +1,15 @@
 package org.cbs.service;
 
-import java.util.List;
 
 import org.cbs.domain.Criteria;
 import org.cbs.domain.Reply;
+import org.cbs.domain.ReplyPageDTO;
 
 
 public interface ReplyService {
 	
 	/* 댓글 목록(페이징 O) */
-	public List<Reply> findAll(Criteria criteria, Long boardId);
+	public ReplyPageDTO findAll(Criteria criteria, Long boardId);
 	
 	/* 댓글 등록 */
 	public int register(Reply reply);

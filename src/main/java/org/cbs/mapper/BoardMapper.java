@@ -2,6 +2,7 @@ package org.cbs.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.cbs.domain.Board;
 import org.cbs.domain.Criteria;
@@ -32,5 +33,10 @@ public interface BoardMapper {
 	/* 게시글 수정 */
 	public int update(Board board);
 	
+	/**  
+	 * 댓글수 업데이트
+	 * @Param amount : criteria 의 amount가 아니라 댓글 증감용 변수(댓글 등록: +1, 댓글 삭제: -1)  
+	 */ 
+	public void updateReplyCnt(@Param("boardId") Long boardId, @Param("amount") int amount);
 	
 }

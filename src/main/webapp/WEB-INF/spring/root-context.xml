@@ -3,13 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- 커넥션 풀 설정 부분 시작 -->
     <bean name="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
- 			 <!-- log4jdbc.log4j2 사용시 드라이버랑 URL 변경해야함  -->
+ 			 <!-- log4jabc.log4j2 사용시 드라이버랑 URL 변경해야함  -->
 <!--         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> -->
 <!--         <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/> 	-->
 		<!-- 변경된 드라이버(log4jdbc.log4j2 사용) -->
@@ -29,14 +33,30 @@
 	
 	<!-- 마이바티스 스프링 연동 세팅, 프로퍼티로 dataSource(커넥션 풀 필요) -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	  <property name="dataSource" ref="dataSource" />
+	  <property name="dataSource" ref="dataSource"/>
 	  <!-- mybatis-config 추가(typeAlias 용) , configLocation(구성위치) , value : 실제 파일 위치 지정  -->
 	  <property name="configLocation" value="classpath:/mybatis-config.xml"/>
 	</bean>
 	
-	<!-- 해당 패키지 안의 모든 인터페이스들을 MyBatis 매퍼로 간주하고 Spring의 Bean으로 등록 -->
+	<!-- 트랜잭션 매니저 빈으로 등록  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 애노테이션 기반으로 트랜잭션 설정 가능  -->
+	<tx:annotation-driven/>
+	
+	<!-- 해당 패키지 안의 모든터페이스들을 MyBatis 매퍼로 간주하고 Spring의 Bean으로 등록 -->
 	<mybatis-spring:scan base-package="org.cbs.mapper"/>
 	
-	
+	<!-- service 패키지 컴포넌트 스캔해서 빈으로 등록 -->
 	<context:component-scan base-package="org.cbs.service"/>
+	
+	<!-- aop 패키지 컴포넌트 스캔해서 빈으로 등록  -->
+	<context:component-scan base-package="org.cbs.aop"/>
+	
+	<!-- @Aspect 붙은 빈(@component)를 프록시로 만들어줌 -->
+	<aop:aspectj-autoproxy/>
+	
+	
 </beans>

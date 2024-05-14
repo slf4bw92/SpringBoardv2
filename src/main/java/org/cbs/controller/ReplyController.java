@@ -1,9 +1,9 @@
 package org.cbs.controller;
 
-import java.util.List;
 
 import org.cbs.domain.Criteria;
 import org.cbs.domain.Reply;
+import org.cbs.domain.ReplyPageDTO;
 import org.cbs.service.ReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,14 +32,14 @@ public class ReplyController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE )
-	public List<Reply> replies( @PathVariable Long boardId, @ModelAttribute Criteria criteria ) {
+	public ReplyPageDTO replies( @PathVariable Long boardId, @ModelAttribute Criteria criteria ) {
 											   
 		log.info("replies...  criteria : {} ", criteria);
 		log.info("replies...  boardId : {} " , boardId);
 		
-		List<Reply> replyList = replyService.findAll(criteria, boardId);
+		ReplyPageDTO replyPageDTO = replyService.findAll(criteria, boardId);
 		
-		return replyList;
+		return replyPageDTO;
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)

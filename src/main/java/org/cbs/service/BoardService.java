@@ -2,6 +2,7 @@ package org.cbs.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.cbs.domain.Board;
 import org.cbs.domain.Criteria;
 
@@ -27,4 +28,6 @@ public interface BoardService {
 	
 	/* 게시글 삭제 */
 	public boolean remove(Long boardId);
+	
+
 }

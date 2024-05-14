@@ -78,8 +78,9 @@ public class ReplyMapperTest {
 		assertThat(findReply.getReplyContent()).isEqualTo(reply.getReplyContent());
 		
 	}
+	
 	@Test
-	@DisplayName("특정 게시글에 대한 댓글 목록 테스트(페이징 X)")
+	@DisplayName("특정 게시글에 대한 댓글 목록 테스트(페이징 O)")
 	void selectAllWithPaging() {
 		//given
 		Long boardId = 313L;
@@ -89,9 +90,23 @@ public class ReplyMapperTest {
 		List<Reply> replyList = replyMapper.selectAllWithPaging(criteria, boardId);
 		
 		//then
-		//댓글 테이블에서 게시글번호가 313인 레코드 수(12)만큼 가져왔는지 테스트 
-		assertThat(replyList.size()).isEqualTo(12);
+		//댓글 테이블에서 게시글번호가 313인 레코드 수(10)만큼 가져왔는지 테스트 
+		assertThat(replyList.size()).isEqualTo(10);
+		// 가져온 게시글 출력
+		replyList.forEach(reply -> log.info("reply : {}", reply));
 	}	
+	
+	@Test
+	@DisplayName("특정 게시글에 대한 댓글 수 테스트")
+	void selectTotalByBoardId() {
+		//given
+		Long boardId = 313L;
 		
+		//when
+		int count = replyMapper.selectTotalByBoardId(boardId);
+		
+		//then
+		log.info("count : {}", count);
+	}
 	
 }	

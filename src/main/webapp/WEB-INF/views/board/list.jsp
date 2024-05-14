@@ -19,11 +19,11 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>#게시글 번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>수정일</th>
+                        <th style="width: 15%">#게시글 번호</th>
+                        <th style="width: 30%">제목</th>
+                        <th style="width: 15%">작성자</th>
+                        <th style="width: 20%">작성일</th>
+                        <th style="width: 20%">수정일</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -32,7 +32,7 @@
                         <td id ="boardId"><i class="fab fa-angular fa-lg text-danger me-3"></i><strong>${board.boardId }</strong></td>
                         <td class="move"> 
                         	<a href="/boards/${board.boardId}?pageNum=${pageMaker.criteria.pageNum }&amount=${pageMaker.criteria.amount }">
-                        		<c:out value="${board.title }"/>
+                        		<c:out value="${board.title }"/> <b>[<c:out value="${board.replyCnt }"/>]</b>
 	                        </a></td>                            
                         <td><c:out value="${board.writer }"/> </td>
                         <td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
@@ -56,8 +56,7 @@
                       <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">  
                         <!-- 페이지번호랑 현재 페이지 번호와 같으면 active -->
                         <li class="page-item ${pageMaker.criteria.pageNum == num ? 'active' : '' } ">
-                          <a class="page-link" 
-                             href="${num }">${num }</a>
+                          <a class="page-link" href="${num }">${num }</a>
                         </li>
                       </c:forEach>
                       
@@ -77,7 +76,7 @@
                        <!-- 검색 타입(select box), 검색 키워드 입력  -->
                        <div class="row justify-content-md-center mb-3">
                     	  <div class="col-md-5">
-	                        <div class="input-group">
+	                        <div class="input-group justify-content-center">
 	                    	  <div class="col-md-3 me-1">
 	                    		<select class="form-select" id="inputGroupSelect02" name="type">
 		                          <option value="TC"<c:if test="${pageMaker.criteria.type == null || pageMaker.criteria.type == 'TC'}">selected</c:if>>제목+내용</option>
@@ -88,16 +87,14 @@
 			                  </div>
 		                      <div class="col-md-6">
 	   							<input class="form-control" type="text" name="keyword" placeholder="Search" aria-label="Search"
-	   								   value='<c:out value="${pageMaker.criteria.keyword }"></c:out>'>
-	   								   
+	   								   value='<c:out value="${pageMaker.criteria.keyword }"></c:out>'>						   
  							  </div>
   							  <div class="col-md-2 ms-1">
 	   						    <button class="btn btn-outline-primary" type="submit">Search</button>
    							  </div>
 	   					   </div>
    						 </div>
- 					   </div>
-   						
+ 					   </div>	
                     </form>
                     
                     <!-- 페이지 이동용 Form 태그  -->
@@ -120,14 +117,14 @@
 
 
 
-              <!-- Modal 추가 -->
+              <!-- Modal 추가 (게시글 처리) -->
               <div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+                      <h5 class="modal-title" id="exampleModalLabel1">게시글</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" 
-                             aria-hidden="true" aria-label="Close">&times;</button>
+                             aria-hidden="true" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">처리가 완료되었습니다</div>
                     <div class="modal-footer">
@@ -175,6 +172,8 @@
 					$(".modal-body").html("게시글 " + parseInt(result) + " 번이 등록되었습니다.")
 				}
 				
+				 
+				// modal("show"), modal("hide") : 부트스트랩이 제공하는 JavaScript 메서드, 팝업/숨김 
 				$("#myModal").modal("show");
 			}
 			

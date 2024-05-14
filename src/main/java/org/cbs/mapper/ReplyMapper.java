@@ -21,6 +21,9 @@ public interface ReplyMapper {
 	/* 댓글 수정 */
 	public int update(Reply reply);
 	
+	/* 특정 게시글의 댓글 수 */
+	public int selectTotalByBoardId(Long boardId);
+	
 	/**  
 	 * 특정 게시글의 댓글 목록(페이징 처리 포함)
 	 * @Param : 마이바티스 애노테이션
@@ -28,4 +31,6 @@ public interface ReplyMapper {
 	 *   2) 파라미터명 생략 불가 
 	 */
 	public List<Reply> selectAllWithPaging(@Param("criteria") Criteria criteria, @Param("boardId") Long boardId);
+	
+	
 }
