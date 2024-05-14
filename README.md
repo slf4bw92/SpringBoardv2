@@ -58,7 +58,8 @@
 </div>
 <div align='start'>
   <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/4492defa-1778-49ec-9838-b038557332db"/>
-  
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/71b31f5d-624f-4d7b-97f9-13ac21b20a4e"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/284e93df-7dbe-4518-9371-cd1bd69761b1"/>
 </div>
 
 
