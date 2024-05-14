@@ -50,16 +50,18 @@
 </div>
 <br>
 
-## 📱 주요화면 및 동작시연
+## 📱 동작시연
 <div align='start'>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/f1ba3331-970f-461c-b8be-9a5367cbb9ec"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/bc41f44b-1f7e-4ab0-affd-7775b1794bbd"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/385cb78d-ed54-407d-bc3a-a6c869636607"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/80bf1a15-e230-4107-b564-dd36b0132b3d"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/14d7dbeb-d4fa-4bd5-a6d1-c7ba094bc554"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/9ee0dd78-2dfb-4f3b-a248-51724ce93fd9"/>
 </div>
 <div align='start'>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/806dc1f2-0f10-4f82-8abd-4057d699f78a"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/1b6b66e3-911d-4646-898b-f6dde0212c5e"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/21081a77-e8e9-487a-8e0f-d40f6ac9c724"/>
-</div>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/4492defa-1778-49ec-9838-b038557332db"/>
   
+</div>
+
+
+
+
 
