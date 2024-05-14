@@ -41,12 +41,12 @@
 <br>
 
 ## ✒️ API
-- API 명세서 : https://www.notion.so/API-c8570b816fde4e18acf1b42486113cd4?pvs=4
+- API 명세서 : https://faceted-lathe-809.notion.site/API-c8570b816fde4e18acf1b42486113cd4?pvs=4
 <br>
 
 ##  게시판 서비스 요청 흐름
 <div align='start'>
-    <img height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/dcfb10a1-07bf-464f-b71a-3fb1896b1af9"/>
+    <img height="400px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/dcfb10a1-07bf-464f-b71a-3fb1896b1af9"/>
 </div>
 <br>
 
