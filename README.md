@@ -52,17 +52,15 @@
 
 ## 📱 동작시연
 <div align='start'>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/80bf1a15-e230-4107-b564-dd36b0132b3d"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/14d7dbeb-d4fa-4bd5-a6d1-c7ba094bc554"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/9ee0dd78-2dfb-4f3b-a248-51724ce93fd9"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/5c5cb492-7ebf-4917-8547-d9331c8ff069"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/a5814efb-f496-4300-a7b9-8d900b2856e4"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/35f050ed-71c0-4151-9ff4-0fe2a35f6060"/>
 </div>
 <div align='start'>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/4492defa-1778-49ec-9838-b038557332db"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/71b31f5d-624f-4d7b-97f9-13ac21b20a4e"/>
-  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/284e93df-7dbe-4518-9371-cd1bd69761b1"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/1ea0894c-6191-417a-8ad9-9631e38e29eb"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/34370ff9-6a1c-4133-9c30-c889edac7ed0"/>
+  <img width='30%' height="300px" src="https://github.com/slf4bw92/SpringBoardv2/assets/168201465/d959c60b-fd0e-4107-8622-644bee71ea5c"/>
 </div>
-
-
 
 
 
