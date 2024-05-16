@@ -1,4 +1,4 @@
-# SpringBoard
+# 📗SpringBoard
 - 스프링 프레임워크를 활용한 게시판 만들기
 <br>
 
